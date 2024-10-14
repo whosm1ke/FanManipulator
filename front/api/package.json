@@ -1,0 +1,14 @@
+{
+  "name": "api-generation",
+  "version": "1.0.0",
+  "description": "This packega provides automatic API generation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Chernysh",
+  "license": "ISC",
+  "devDependencies": {
+    "swagger-axios-codegen": "^0.16.14"
+  }
+}
