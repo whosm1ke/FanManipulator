@@ -1,9 +1,40 @@
+import { useState } from 'react';
+
 function App() {
+  const [fanStatus, setFanStatus] = useState('');
+
+  const handleFanToggle = async (status: string) => {
+    try {
+      const response = await fetch(`http://localhost:5000/fan?status=${status}`);
+      const data = await response.json();
+      setFanStatus(data.fan || data.error);
+    } catch (error) {
+      console.error("Error fetching fan status:", error);
+    }
+  };
+
   return (
-    <div className="bg-red-200 text-black text-2xl flex justify-center">
-      Hello world
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md text-center">
+        <h1 className="text-2xl font-bold mb-4">Fan Control</h1>
+        <div className="space-x-4">
+          <button
+            onClick={() => handleFanToggle('on')}
+            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
+          >
+            Turn Fan On
+          </button>
+          <button
+            onClick={() => handleFanToggle('off')}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700"
+          >
+            Turn Fan Off
+          </button>
+        </div>
+        {fanStatus && <p className="mt-4 text-lg">Fan Status: {fanStatus}</p>}
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
