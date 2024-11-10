@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-fan-api": "node generate-fan-api.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whosm1ke/FanManipulator.git"
+  },
+  "devDependencies": {
+    "swagger-axios-codegen": "^0.16.14"
+  }
+}

@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import {DefaultService} from "./api/fan/DefaultService.ts";
+import setupAxios from "./startup.ts";
 
+setupAxios()
 function App() {
-  const [fanStatus, setFanStatus] = useState('');
+  const [fanStatus, setFanStatus] = useState<string | undefined>('');
 
   const handleFanToggle = async (status: string) => {
     try {
-      const response = await fetch(`http://localhost:5000/fan?status=${status}`);
-      const data = await response.json();
-      setFanStatus(data.fan || data.error);
+      const service = new DefaultService()
+      const response = await service.fan({status:status})
+      setFanStatus(response.fan || response.error);
     } catch (error) {
       console.error("Error fetching fan status:", error);
     }
