@@ -14,13 +14,13 @@ fan_status_model = api.model('FanStatus', {
 class FanController(Resource):
     @api.doc(params={'status': 'Status of the fan (on/off)'})
     @api.response(200, 'Success', fan_status_model)
-    @api.response(400, 'Invalid status')
+    @api.response(400, 'Invalid status', fan_status_model)
     def get(self):
         """Controls the fan status"""
         status = request.args.get('status')
         if status == 'on':
-            return jsonify({"fan": "on"})
+            return {"fan": "on"}, 200
         elif status == 'off':
-            return jsonify({"fan": "off"})
+            return {"fan": "off"}, 200
         else:
-            return jsonify({"error": "Invalid status"}), 400
+            return {"error": "Invalid status"}, 400
